@@ -264,6 +264,20 @@
       ]
     },
     {
+      "type": "selector",
+      "tag": "🎮 游戏平台",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 全球直连",
+        "🚀 节点选择",
+        "🇭🇰 香港",
+        "🇹🇼 台湾",
+        "🇸🇬 新加坡",
+        "🇯🇵 日本",
+        "🇺🇸 美国"
+      ]
+    },
+    {
       "type": "direct",
       "tag": "🎯 全球直连"
     },
@@ -347,6 +361,13 @@
           "Steam-Web"
         ],
         "outbound": "🎮 Steam 网页"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Game-Platforms"
+        ],
+        "outbound": "🎮 游戏平台"
       },
       {
         "action": "route",
@@ -731,6 +752,62 @@
             ]
           }
         ]
+      },
+      {
+        "type": "inline",
+        "tag": "Game-Platforms",
+        "rules": [
+          {
+            "domain_suffix": [
+              "ea.com",
+              "origin.com",
+              "eaassets-a.akamaihd.net",
+              "ubisoft.com",
+              "ubisoftconnect.com",
+              "uplay.com",
+              "ubi.com",
+              "epicgames.com",
+              "epicgames.dev",
+              "unrealengine.com",
+              "epicgames-download1.akamaized.net",
+              "gog.com",
+              "gogalaxy.com",
+              "gogcdn.net",
+              "battle.net",
+              "battlenet.com",
+              "blizzard.com",
+              "blizzard.cn",
+              "riotgames.com",
+              "riotcdn.net",
+              "leagueoflegends.com",
+              "valorant.com",
+              "playvalorant.com",
+              "rockstargames.com",
+              "rockstar-games.com",
+              "socialclub.rockstargames.com",
+              "2k.com",
+              "2kgames.com",
+              "bethesda.net",
+              "bethesda.com",
+              "square-enix.com",
+              "square-enix-games.com",
+              "enjin.com",
+              "itch.io",
+              "itch.zone",
+              "humblebundle.com",
+              "humble.com",
+              "paradoxplaza.com",
+              "paradoxinteractive.com",
+              "wargaming.net",
+              "worldoftanks.com",
+              "worldofwarships.com",
+              "gaijin.net",
+              "warthunder.com",
+              "nexon.com",
+              "nexon.net"
+            ]
+          }
+        ]
       }
     ],
     "auto_detect_interface": true,
@@ -779,6 +856,13 @@
           "Steam-Web"
         ],
         "server": "Remote-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Game-Platforms"
+        ],
+        "server": "Local-DNS"
       },
       {
         "action": "route",
