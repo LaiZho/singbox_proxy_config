@@ -236,6 +236,34 @@
       ]
     },
     {
+      "type": "selector",
+      "tag": "🎮 Steam 网页",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🚀 节点选择",
+        "🇭🇰 香港",
+        "🇹🇼 台湾",
+        "🇸🇬 新加坡",
+        "🇯🇵 日本",
+        "🇺🇸 美国",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "📥 Steam 下载",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 全球直连",
+        "🚀 节点选择",
+        "🇭🇰 香港",
+        "🇹🇼 台湾",
+        "🇸🇬 新加坡",
+        "🇯🇵 日本",
+        "🇺🇸 美国"
+      ]
+    },
+    {
       "type": "direct",
       "tag": "🎯 全球直连"
     },
@@ -305,6 +333,20 @@
           "GeoIP-Private"
         ],
         "outbound": "🎯 全球直连"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Steam-Download"
+        ],
+        "outbound": "📥 Steam 下载"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Steam-Web"
+        ],
+        "outbound": "🎮 Steam 网页"
       },
       {
         "action": "route",
@@ -660,6 +702,35 @@
         "http_client": {
           "detour": "🚀 节点选择"
         }
+      },
+      {
+        "type": "inline",
+        "tag": "Steam-Download",
+        "rules": [
+          {
+            "domain_suffix": [
+              "steamcontent.com",
+              "steamserver.net"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "inline",
+        "tag": "Steam-Web",
+        "rules": [
+          {
+            "domain_suffix": [
+              "steampowered.com",
+              "steamcommunity.com",
+              "steamgames.com",
+              "steamstatic.com",
+              "steamusercontent.com",
+              "steamcommunity-a.akamaihd.net",
+              "steamcdn-a.akamaihd.net"
+            ]
+          }
+        ]
       }
     ],
     "auto_detect_interface": true,
@@ -693,6 +764,20 @@
       {
         "action": "route",
         "clash_mode": "global",
+        "server": "Remote-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Steam-Download"
+        ],
+        "server": "Local-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Steam-Web"
+        ],
         "server": "Remote-DNS"
       },
       {
